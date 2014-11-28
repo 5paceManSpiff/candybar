@@ -24,11 +24,11 @@ widget_main (struct widget *widget) {
 			buff[len - 1] = 0;
 		}
 
-		LOG_DEBUG(buff);
-
 		if (pclose(pipe) != 0) {
 			LOG_DEBUG("pipe close failed");
 		}
+
+		widget_data_callback(widget, widget_data_arg_string(buff));
 
 		widget_epoll_wait_goto(widget, config.refresh_interval, cleanup);
 	}
