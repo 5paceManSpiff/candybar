@@ -9,7 +9,27 @@ widget_main (struct widget *widget) {
 
 	widget_epoll_init(widget);
 	while (true) {
-		LOG_DEBUG("test");
+		FILE *pipe = popen(config.script_file, "r");
+		char buff[512];
+		int len;
+
+		if (!pipe) {
+			LOG_DEBUG("pipe open failed");
+			continue;
+		}
+
+		fgets(buff, sizeof(buff), pipe);
+		len = strlen(buff);
+		if (buff[len-1] == '\n') {
+			buff[len-1] = 0;
+		}
+
+		LOG_DEBUG(buff);
+
+		if (pclose(pipe) != 0) {
+			LOG_DEBUG("pipe close failed");
+		}
+
 		widget_epoll_wait_goto(widget, config.refresh_interval, cleanup);
 	}
 
