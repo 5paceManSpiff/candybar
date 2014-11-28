@@ -37,7 +37,7 @@ get_geoip_location (struct location *location) {
 
 	return 0;
 
- error:
+error:
 	free(geoip_raw_json);
 	geoip_raw_json = NULL;
 
@@ -139,7 +139,7 @@ get_weather_information (struct location *location) {
 
 	return weather;
 
- error:
+error:
 	json_decref(weather_data);
 
 	free(weather);

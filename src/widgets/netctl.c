@@ -20,8 +20,8 @@ widget_main (struct widget *widget) {
 
 		fgets(buff, sizeof(buff), pipe);
 		len = strlen(buff);
-		if (buff[len-1] == '\n') {
-			buff[len-1] = 0;
+		if (buff[len - 1] == '\n') {
+			buff[len - 1] = 0;
 		}
 
 		LOG_DEBUG(buff);
