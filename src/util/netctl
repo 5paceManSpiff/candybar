@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+for network in `netctl list`; do
+	if [[ `netctl status $network` == *"Active: active"* ]]; then
+		echo "$network"
+		exit 0
+	fi
+done
+
+echo "none"
+exit 0

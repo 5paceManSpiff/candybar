@@ -88,6 +88,7 @@ def build(bld):
 
 	# widgets
 	bld.shlib(source='src/widgets/datetime.c', target='widget_datetime', use=basedeps, install_path=LIBDIR)
+	bld.shlib(source='src/widgets/netctl.c', target='widget_netctl', use=basedeps, install_path=LIBDIR)
 
 	if bld.is_defined('HAVE_ALSA'):
 		bld.shlib(source='src/widgets/volume.c', target='widget_volume', use=basedeps + ['ALSA'], install_path=LIBDIR)
