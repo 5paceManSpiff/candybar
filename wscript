@@ -133,6 +133,9 @@ def build(bld):
 		else:
 			bld.install_files('${{PREFIX}}/share/doc/{}'.format(PACKAGE), 'docs/{}.{}.asciidoc'.format(PACKAGE, manpage))
 
+	# netctl script
+	bld.install_as(LIBDIR + '/netctl', 'src/util/netctl', chmod=775)
+
 	# default theme
 	use_remote_theme = True
 	if bld.env.WGET and bld.env.TAR:
